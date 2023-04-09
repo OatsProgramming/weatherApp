@@ -1,4 +1,4 @@
-export default async function fetchGeo({city, state, country, limit}: FetchGeo): Promise<GeoCode[]> {
+export default async function fetchGeo({city, state, country, limit}: FetchArgs): Promise<GeoCode[]> {
     const res = await fetch(`
         ${process.env.NEXT_PUBLIC_URL}/api/geocodes?city=${city}&state=${state ?? ''}&country=${country ?? ''}&limit=${limit ?? ''}
     `)

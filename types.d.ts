@@ -145,20 +145,13 @@ type GeoCode = {
 
 type Units = 'F' | 'C' | 'K'
 
-interface FetchCurrent {
-  city: string,
-  state?: string,
-  country?: string,
-  limit?: number,
-  units: Units
-}
-                     
-interface FetchGeo {
+interface FetchArgs {
   city: string,
   state?: string,
   country?: string,
   limit?: number,
 }
 
-// For namesake
-interface FetchHourly extends FetchCurrent {}
+interface FetchWUnits extends FetchArgs {
+  units: Units
+}

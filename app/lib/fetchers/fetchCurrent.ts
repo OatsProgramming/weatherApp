@@ -1,4 +1,4 @@
-export default async function fetchCurrent({city, state, country, limit, units}: FetchCurrent): Promise<CurrentWeather>{
+export default async function fetchCurrent({city, state, country, limit, units}: FetchWUnits): Promise<CurrentWeather>{
     const res = await fetch(`
         ${process.env.NEXT_PUBLIC_URL}/api/current?city=${city}&state=${state ?? ''}&country=${country ?? ''}&limit=${limit ?? ''}&units=${units}
     `)
