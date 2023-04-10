@@ -20,34 +20,35 @@ export default function callLimitDecorator<Fetcher extends Function>(fetcher: Fe
     const reset = 1_000 * 60
     setInterval(() => {
         requestsMade.current = 0
-        requestsMade.lastArgs = {} as FetchArgs | FetchWUnits 
+        requestsMade.lastArgs = {} as FetchArgs | FetchWUnits
     }, reset)
 
-    // Wrap the fetcher fn w/ a promise
-    return function (args: FetchArgs | FetchWUnits) {
-        return new Promise((resolve, reject) => {
-            // Check to see if user inputted the same location
-            const isSameArgs = (isEqualWith(args, requestsMade.lastArgs, caseInsensitive))
+    // Wrap the fetcher fn 
+    return async function (args: FetchArgs | FetchWUnits) {
+        // Check to see if user inputted the same location
+        const isSameArgs = (isEqualWith(args, requestsMade.lastArgs, caseInsensitive))
 
-            // If so, make sure it's not over the limit
-            if (requestsMade.current < maxRequests) {
-                console.log(args)
+        // Check if over limit beforehand
+        if (requestsMade.current < maxRequests) {
+            try {
                 // Will use Next JS ISR to worry abt old data vs new data caching
-                fetcher(args)
-                    .then(resolve)
-                    .catch(reject)
+                const result = await fetcher(args)
 
                 // If the args is different, then this will make Next JS call the api
                 // Therefore, increment and store last args
                 if (!isSameArgs) {
-                    console.log(args)
                     requestsMade.current += 1
                     requestsMade.lastArgs = args
                 }
+                return result
 
-            } else {
-                reject(new Error('API max requests reached. Please try again in one minute'));
+            } catch (err) {
+                console.error(err)
+                throw new Error('Failed to fetch')
             }
-        })
-    } 
+        } else {
+            throw new Error('API max requests reached. Please try again in one minute')
+        }
+
+    }
 }

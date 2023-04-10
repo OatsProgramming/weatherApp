@@ -95,6 +95,7 @@ type HourlyForecast = {
     "dt_txt": string
 }
 
+// In the api, it returns GeoCode[] not just a singular one
 type GeoCode = {
     "name": string,
     "local_names": {
