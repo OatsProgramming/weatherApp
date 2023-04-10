@@ -48,14 +48,27 @@ type CurrentWeather = {
   "cod": number
 }
 
-type FourDayForecast = {
+type QuintWeeklyForecast = {
   "cod": string,
   "message": number,
   "cnt": numbernumber
-  "list": HourlyForecast[]
+  "list": TriHourlyForecast[],
+  "city": {
+    "id": number,
+    "name": string,
+    "coord": {
+      "lat": number
+      "lon": number
+    },
+    "country": string,
+    "population": number
+    "timezone": number
+    "sunrise": number
+    "sunset": number
+  }
 }
 
-type HourlyForecast = {
+type TriHourlyForecast = {
     "dt": number,
     "main": {
       "temp": number,
@@ -144,7 +157,7 @@ type GeoCode = {
     "country": string
 }
 
-type Units = 'F' | 'C' | 'K'
+type Units = 'imperial' | 'metric' | 'standard'
 
 interface FetchArgs {
   city: string,

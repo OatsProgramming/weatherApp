@@ -3,18 +3,18 @@
 import { useState } from "react"
 import fetchCurrent from "./lib/fetchers/fetchCurrent"
 import callLimitDecorator from "./lib/callLimit/callLimit"
-import fetchHourly from "./lib/fetchers/fetchHourly"
+import fetchHourly from "./lib/fetchers/fetchWeekly"
 
 export default function Home() {
-    const [data, setData] = useState<HourlyForecast>()
+    const [data, setData] = useState<QuintWeeklyForecast>()
     const [city, setCity] = useState('')
     async function handleClick() {
         const res = await fetchHourly({
             city: city,
-            units: 'F'
+            units: 'imperial'
         })
         console.log(res)
-        setData(data)
+        setData(res)
     }
 
     return(
@@ -23,7 +23,7 @@ export default function Home() {
             Click
         </button>
         <input onChange={(e) => setCity(e.target.value)}/>
-        <div>{data?.weather[0].description}</div>
+        <div>{data?.list[0].main.temp} Hello</div>
         </>
     )
 }

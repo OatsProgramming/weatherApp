@@ -22,7 +22,7 @@ export async function GET(req: Request) {
         const res2 = await fetch(`
             https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${process.env.NEXT_PUBLIC_API_KEY}
         `)
-        if (!res2.ok) throw new Error("Failed to fetch data ( hourly )")
+        if (!res2.ok) throw new Error("Failed to fetch data ( weekly )")
         return res2
 
     } catch (error) {
