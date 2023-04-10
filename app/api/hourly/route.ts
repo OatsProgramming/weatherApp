@@ -1,3 +1,5 @@
+import fetchGeo from "@/app/lib/fetchers/fetchGeo"
+
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)
     const city = searchParams.get('city')
@@ -5,17 +7,16 @@ export async function GET(req: Request) {
     const country = searchParams.get('country')
     const limit = searchParams.get('limit')
     const units = searchParams.get('units') as Units
+    
+    if (!city) return new Response(JSON.stringify("Missing query: city"), { status: 400 })
 
     try {
-        // Get coords
-        const res = await fetch(`
-            ${process.env.NEXT_PUBLIC_URL}/api/geocodes?city=${city ?? ''}&state=${state ?? ''}&country=${country ?? ''}&limit=${limit ?? ''}
-        `)
-        if (!res.ok) throw new Error("Failed to fetch coords ( hourly )")
-         // Remember that it returns a list of possible locations
+        // Get lat && lon
+        const geos = await fetchGeo({city, state: state ?? '', country: country ?? '', limit: limit ?? '5'})
+
+        // Remember that it returns a list of possible locations
         // Perhaps make it selectable before continuing?
-        const result: GeoCode[] = await res.json()
-        const { lat, lon } = result[0]
+        const { lat, lon } = geos[0]
 
         // Get hourly data
         const res2 = await fetch(`

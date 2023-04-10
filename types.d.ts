@@ -149,7 +149,7 @@ interface FetchArgs {
   city: string,
   state?: string,
   country?: string,
-  limit?: number,
+  limit?: string,
 }
 
 interface FetchWUnits extends FetchArgs {

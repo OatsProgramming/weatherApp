@@ -16,8 +16,8 @@ export default function callLimitDecorator<Fetcher extends Function>(fetcher: Fe
     };
 
     // Reset every min
-    const maxRequests = 3 * 18 // 3 calls usually made; 60 max (free version); 18 clicks (safe side)
-    const reset = 1_000 * 30
+    const maxRequests = 3 * 15 // 3 calls usually made; 60 max per min (free version); 15 clicks (safe side)
+    const reset = 1_000 * 60
     setInterval(() => {
         requestsMade.current = 0
         requestsMade.lastArgs = {} as FetchArgs | FetchWUnits 
@@ -37,7 +37,7 @@ export default function callLimitDecorator<Fetcher extends Function>(fetcher: Fe
                     .then(resolve)
                     .catch(reject)
 
-                // If the args is different, then this will Next JS call the api
+                // If the args is different, then this will make Next JS call the api
                 // Therefore, increment and store last args
                 if (!isSameArgs) {
                     console.log(args)
