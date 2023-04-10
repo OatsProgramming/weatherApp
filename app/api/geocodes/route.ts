@@ -1,6 +1,6 @@
 // The weather api works with lat && lon
 
-import fetchGeo from "@/app/lib/fetchers/fetchGeo"
+import fetchGeo from "@/lib/fetchers/fetchGeo"
 
 // So this will be the first to be called
 export async function GET(req: Request) {

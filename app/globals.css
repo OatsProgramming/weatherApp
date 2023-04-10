@@ -9,3 +9,317 @@
     color-scheme: dark;
   }
 }
+
+.containerForSquares {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: grid;
+  gap: 1em;
+  transform-origin: left center;
+}
+
+.droppingSquares {
+  width: 100px;
+  height: 100px;
+  border-radius: 25%;
+  background-color: hsla(212, 68%, 51%);
+}
+
+.iconBox {
+  width: 300px;
+  height: 300px;
+  margin: 10px 0;
+}
+
+.innerCircle {
+  fill: hsl(0, 0%, 74%);
+}
+
+.lightning {
+  overflow: visible;
+  stroke: #fff;
+  stroke-width: 25;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.outerDashedCircle {
+  stroke-width: 5;
+  stroke: hsl(0, 4%, 78%);
+  /* dash length then gap length ... */
+  stroke-dasharray: 70, 20;
+  fill: none;
+}
+
+svg {
+  width: 300;
+  height: 300;
+}
+
+/* Utility Classes - Start */
+.centerItems {
+  place-items: center;
+}
+
+.flex{
+  display: flex;
+}
+
+.flexDirectionColumn{
+  flex-direction: column;
+}
+
+.flexDirectionRow{
+  flex-direction: row;
+}
+
+.gap{
+  gap: 1em;
+}
+
+.gap1p5{
+  gap: 1.5em;
+}
+
+.gap2{
+  gap: 2em
+}
+
+.grid{
+  display: grid;
+}
+
+.gridColumn2{
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gridColumn3{
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gridRow2{
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.gridRow3{
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.gridRow4{
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.positionRelative{
+  position: relative;
+}
+
+.positionAbsolute{
+  position: absolute;
+  
+}
+/* Utility Classes - End */
+
+:root{
+  font-family: 'Rubik', sans-serif;
+  font-size: x-large;
+}
+
+*{
+  box-sizing: border-box;
+}  
+
+.blob{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(221, 216, 216, 0.744);
+  border-radius: 54% 46% 55% 45% / 66% 74% 26% 34% ;
+  top: -20%;
+  scale: 1.13;
+  z-index: -10;
+}
+
+body{
+  padding: 0;
+  margin: 0;
+  /* background-image: url( './background.svg' ); */
+  background-repeat: no-repeat;
+  background-size: 2000px;
+} 
+
+.cityInput{
+  grid-column: 1;
+}
+
+.countryInput{
+  grid-column: 3;
+}
+
+.currentWeatherComponent{
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  width: 100%;
+}
+
+.currentWeatherIcon{
+  grid-row: 2;
+  grid-column: 2;
+  margin: 0 auto;
+}
+
+.highlight{
+  position: absolute;
+  background-color: hsl(0, 0%, 62%);
+  width: 100%;
+  height: 10%;
+  z-index: 100;
+  left: 20%;
+  top: 100%;
+}
+
+.leftSideCurrent{
+  width: 50%;
+  margin: 1em;
+  text-align: center;
+}
+
+.rightSideCurrent{
+  width: 50%;
+}
+
+.mainGrid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  gap: 2em;
+}
+
+.next24HrsComponent{
+  width: 80%;
+  overflow-x: scroll;
+  grid-row: 2;
+  grid-column: 1 / span 2;
+  box-shadow: inset 0px 0px 33px 0px rgba(0,0,0,0.74);
+  border-radius: 10px;
+}
+
+.next5DaysComponent{
+  grid-row: 1 / span 2;
+  width: 100%;
+  padding: 10px;
+  box-shadow: inset 0px 0px 33px 0px rgba(0,0,0,0.74);
+  border-radius: 10px;
+}
+
+.next5DaysItems{
+  display: flex;
+  justify-content: space-between;
+}
+
+.SearchBar{
+  position: fixed;
+  width: 80%;
+  bottom: 25px;
+  left: 100px;
+  background-color: hsla(0, 0%, 100%, 0.081);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.SearchBar > input{
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.SearchButton{
+  background-color: #111111;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #505050;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 150%;
+  will-change: transform;
+  
+}
+
+.SearchButton:disabled {
+  pointer-events: none;
+}
+
+.SearchButton:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.SearchButton:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.stateInput{
+  grid-column: 2;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(221, 216, 216, 0.088);
+}
+
+.units{
+  grid-row: 3;
+}
+
+.weatherIconComponent{
+  width: 100px;
+  height: 100px;
+}
+
+@media screen and (max-width: 750px){
+  /* #root{
+    background-image: url( './background.svg' );
+    background-repeat: no-repeat;
+    background-size: 2000px;
+  } */
+
+  .mainGrid{
+    width: 90%;
+    grid-template-columns: repeat(2, 1fr);
+    
+  }
+  .next5DaysComponent{
+    grid-row: 3;
+    grid-column: 1 / span 2;
+    width: 60%;
+    margin-bottom: 1em;
+  }
+
+  .next24HrsComponent{
+    width: 60%;
+  }
+
+  .SearchBar{
+    opacity: 0;
+  }
+}

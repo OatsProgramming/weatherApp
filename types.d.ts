@@ -52,7 +52,7 @@ type QuintWeeklyForecast = {
   "cod": string,
   "message": number,
   "cnt": numbernumber
-  "list": TriHourlyForecast[],
+  "list": ForecastObj[],
   "city": {
     "id": number,
     "name": string,
@@ -68,7 +68,7 @@ type QuintWeeklyForecast = {
   }
 }
 
-type TriHourlyForecast = {
+type ForecastObj = {
     "dt": number,
     "main": {
       "temp": number,
@@ -168,4 +168,26 @@ interface FetchArgs {
 
 interface FetchWUnits extends FetchArgs {
   units: Units
+}
+
+type DayMap = {
+  [day: string]: {
+      forecastObjects: TriHourlyForecast[];
+      highest: number;
+      lowest: number;
+  };
+}
+
+interface IconProps {
+  children?: React.ReactNode,
+  size?: number,
+  moveX?: number,
+  moveY?: number,
+  fillColor?: string,
+  rotate?: number,
+  style?: {[key: string]: any},
+  initial?: {[key: string]: any},
+  animate?: {[key: string]: any},
+  exit?: {[key: string]: any},
+  animateNow?: boolean | null,
 }

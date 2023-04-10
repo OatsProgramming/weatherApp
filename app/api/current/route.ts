@@ -1,4 +1,4 @@
-import fetchGeo from "@/app/lib/fetchers/fetchGeo"
+import fetchGeo from "@/lib/fetchers/fetchGeo"
 
 export async function GET(req: Request){
     const { searchParams } = new URL(req.url)

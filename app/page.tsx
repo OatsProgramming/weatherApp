@@ -1,9 +1,10 @@
 'use client'
 
 import { useState } from "react"
-import fetchCurrent from "./lib/fetchers/fetchCurrent"
-import callLimitDecorator from "./lib/callLimit/callLimit"
-import fetchHourly from "./lib/fetchers/fetchWeekly"
+import fetchCurrent from "../lib/fetchers/fetchCurrent"
+import callLimitDecorator from "../lib/callLimit/callLimit"
+import fetchHourly from "../lib/fetchers/fetchWeekly"
+import { AllAnimate } from "@/lib/devTest/AllAnimate"
 
 export default function Home() {
     const [data, setData] = useState<QuintWeeklyForecast>()
@@ -19,11 +20,12 @@ export default function Home() {
 
     return(
         <>
-        <button onClick={handleClick}>
+        {/* <button onClick={handleClick}>
             Click
         </button>
         <input onChange={(e) => setCity(e.target.value)}/>
-        <div>{data?.list[0].main.temp} Hello</div>
+        <div>{data?.list[0].main.temp} Hello</div> */}
+        <AllAnimate/>
         </>
     )
 }
