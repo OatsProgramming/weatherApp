@@ -154,7 +154,8 @@ type GeoCode = {
     },
     "lat": number,
     "lon": number,
-    "country": string
+    "country": string,
+    "state": string,
 }
 
 type Units = 'imperial' | 'metric' | 'standard'
@@ -174,7 +175,7 @@ interface FetchWeatherArgs {
 
 type DayMap = {
   [day: string]: {
-      forecastObjects: TriHourlyForecast[];
+      forecastObjects: ForecastObj[];
       highest: number;
       lowest: number;
   };
@@ -193,3 +194,9 @@ interface IconProps {
   exit?: {[key: string]: any},
   animateNow?: boolean | null,
 }
+
+type Next5D = [string, {
+  forecastObjects: ForecastObj[];
+  highest: number;
+  lowest: number;
+}][]

@@ -12,7 +12,7 @@ export default function callLimitDecorator<Fetcher extends Function>(fetcher: Fe
     // That way it doesn't reset and each fetcher will share the same value
     let requestsMade = {
         current: 0,
-        lastArgs: {} as FetchArgs | FetchWUnits
+        lastArgs: {} as FetchGeoArgs | FetchWeatherArgs
     };
 
     // Reset every min
@@ -20,11 +20,11 @@ export default function callLimitDecorator<Fetcher extends Function>(fetcher: Fe
     const reset = 1_000 * 60
     setInterval(() => {
         requestsMade.current = 0
-        requestsMade.lastArgs = {} as FetchArgs | FetchWUnits
+        requestsMade.lastArgs = {} as FetchGeoArgs | FetchWeatherArgs
     }, reset)
 
     // Wrap the fetcher fn 
-    return async function (args: FetchArgs | FetchWUnits) {
+    return async function (args: FetchGeoArgs | FetchWeatherArgs) {
         // Check to see if user inputted the same location
         const isSameArgs = (isEqualWith(args, requestsMade.lastArgs, caseInsensitive))
 
