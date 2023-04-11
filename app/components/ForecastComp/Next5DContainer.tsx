@@ -1,8 +1,6 @@
-import simplifyTime from "@/lib/simplifyTime";
-import { getWeatherDataContext } from "../SearchBar";
-import { WeatherIcon } from "../chooseIcon/WeatherIcon";
+import WeatherIcon from "../chooseIcon/WeatherIcon";
 
-export function Next5DComp({ weatherObj }: {
+export default function Next5DComp({ weatherObj }: {
     // DayMapArr not DayMap
     // As an array, it'd be easier to access the properties by indexing
     weatherObj: DayMapArrFormat

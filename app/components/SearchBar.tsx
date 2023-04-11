@@ -6,19 +6,21 @@ import getHighsNLows from "@/lib/sorters/getHighsNLows";
 import { LazyMotion, m } from "framer-motion";
 import React, { createContext, ReactNode, useContext, useRef, useState } from "react";
 
-type Location = {
-    city: string;
-    state: string;
-    country: string;
-}
-
-const LocationContext = createContext({} as Location)
+const LocationContext = createContext({} as LocationContext)
 
 const WeatherDataContext = createContext({
     current: {} as CurrentWeather,
     next24Hr: [] as ForecastObj[],
     next5D: [] as DayMapArrFormat[]
 })
+
+export function getWeatherDataContext(){
+    return useContext(WeatherDataContext)
+}
+
+export function getLocationContext(){
+    return useContext(LocationContext)
+}
 
 export function SearchBar({children} : {children: ReactNode}){
     // Animation features
@@ -38,7 +40,7 @@ export function SearchBar({children} : {children: ReactNode}){
 
     // To be passed onto context
     // Set once query is handled
-    const [locationData, setLocationData] = useState({} as Location)
+    const [locationData, setLocationData] = useState({} as LocationContext)
 
     const [weatherData, setWeatherData] = useState({
         current: {} as CurrentWeather,
@@ -124,13 +126,4 @@ export function SearchBar({children} : {children: ReactNode}){
         </form>
       </>
     )
-}
-
-// Contexts
-export function getWeatherDataContext(){
-    return useContext(WeatherDataContext)
-}
-
-export function getLocationContext(){
-    return useContext(LocationContext)
 }

@@ -1,16 +1,21 @@
 'use client'
-import { AllAnimate } from "@/lib/devTest/AllAnimate"
+// import { AllAnimate } from "@/lib/devTest/AllAnimate"
+import { SearchBar } from "./components/SearchBar"
+import Forecast from "./components/ForecastComp/Forecast"
+import { CurrentWeather } from "./components/ForecastComp/CurrentWeather"
 
 export default function Home() {
 
     return(
         <>
-        {/* <button onClick={handleClick}>
-            Click
-        </button>
-        <input onChange={(e) => setCity(e.target.value)}/>
-        <div>{data?.list[0].main.temp} Hello</div> */}
-        <AllAnimate/>
+        <SearchBar>
+            <section className='mainGrid'>
+              <CurrentWeather />
+              <Forecast />
+              <Forecast column />
+            </section>
+        </SearchBar>
+        {/* <AllAnimate/> */}
         </>
     )
 }

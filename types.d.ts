@@ -215,3 +215,8 @@ type ConfigureIcon = {
   exit?: { [key: string]: any },
 }
 
+type LocationContext = {
+  city: string;
+  state: string;
+  country: string;
+}

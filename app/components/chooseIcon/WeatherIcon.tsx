@@ -1,6 +1,6 @@
 import chooseIcon from "@/app/components/chooseIcon/chooseIcon";
 
-export function WeatherIcon({ weatherObj, forecastType } : { 
+export default function WeatherIcon({ weatherObj, forecastType } : { 
   weatherObj: ForecastObj;
   forecastType: 'current' | 'next24Hrs' | 'next5D'; 
 }){

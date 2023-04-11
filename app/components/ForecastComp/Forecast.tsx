@@ -1,11 +1,11 @@
 import { getWeatherDataContext } from "../SearchBar"
 import Next24HrComp from "./Next24HrComp";
-import { Next5DComp } from "./Next5DContainer";
+import Next5DComp from "./Next5DContainer";
 
 // Decide if it should be a column or row design
-export function ForecastContainer({ column }: { column?: boolean }) {
+export default function Forecast({ column }: { column?: boolean }) {
   const { next24Hr, next5D } = getWeatherDataContext()
-  
+
   if (column){
     return (
       <div className="next5DaysComponent flex flexDirectionColumn gap">

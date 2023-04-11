@@ -1,11 +1,11 @@
 import simplifyTime from "@/lib/simplifyTime"
-import { WeatherIcon } from "../chooseIcon/WeatherIcon"
+import WeatherIcon from "../chooseIcon/WeatherIcon"
 
 export default function Next24HrComp({ weatherObj }: {
     weatherObj: ForecastObj
 }) {
 
-    // Ex: "2022-08-30 15:00:00"
+    // Ex: "2022-08-30 15:00:00" -> "15"
     const timestring = (+ weatherObj.dt_txt.slice(11, 13))
     const time = simplifyTime(timestring)
 
