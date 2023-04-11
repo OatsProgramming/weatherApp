@@ -1,8 +1,5 @@
 // The weather api works with lat && lon
-
-import fetchGeo from "@/lib/fetchers/fetchGeo"
-
-// So this will be the first to be called
+// Must extract coordinates with their geo api
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)
     const city = searchParams.get('city')

@@ -51,7 +51,7 @@ type CurrentWeather = {
 type QuintWeeklyForecast = {
   "cod": string,
   "message": number,
-  "cnt": numbernumber
+  "cnt": number
   "list": ForecastObj[],
   "city": {
     "id": number,
@@ -159,15 +159,17 @@ type GeoCode = {
 
 type Units = 'imperial' | 'metric' | 'standard'
 
-interface FetchArgs {
+interface FetchGeoArgs {
   city: string,
   state?: string,
   country?: string,
   limit?: string,
 }
 
-interface FetchWUnits extends FetchArgs {
-  units: Units
+interface FetchWeatherArgs {
+  lat: number,
+  lon: number,
+  units: string
 }
 
 type DayMap = {

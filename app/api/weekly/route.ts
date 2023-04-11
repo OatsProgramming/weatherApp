@@ -1,30 +1,18 @@
-import fetchGeo from "@/lib/fetchers/fetchGeo"
+import ValidateRequest from "@/lib/validators/validateRequest"
 
 export async function GET(req: Request) {
-    const { searchParams } = new URL(req.url)
-    const city = searchParams.get('city')
-    const state = searchParams.get('state')
-    const country = searchParams.get('country')
-    const limit = searchParams.get('limit')
-    const units = searchParams.get('units') as Units
-    
-    if (!city) return new Response(JSON.stringify("Missing query: city"), { status: 400 })
+    // Check if there are any missing necessary variables
+    const queries = ValidateRequest(req)
+    if (queries instanceof Error) return new Response(JSON.stringify(queries), { status: 400 })
+
+    const { lat, lon, units } = queries
 
     try {
-        // Get lat && lon
-        const geos = await fetchGeo({city, state: state ?? '', country: country ?? '', limit: limit ?? '5'})
-
-        // Remember that it returns a list of possible locations
-        // Perhaps make it selectable before continuing?
-        const { lat, lon } = geos[0]
-
-        // Get hourly data
-        const res2 = await fetch(`
+        const res = await fetch(`
             https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${process.env.NEXT_PUBLIC_API_KEY}
         `)
-        if (!res2.ok) throw new Error("Failed to fetch data ( weekly )")
-        return res2
-
+        if (!res.ok) throw new Error("Failed to fetch data ( weekly )")
+        return res
     } catch (error) {
         const err = error as Error
         console.log(err)

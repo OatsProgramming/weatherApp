@@ -1,23 +1,13 @@
-import fetchGeo from "@/lib/fetchers/fetchGeo"
+import ValidateRequest from "@/lib/validators/validateRequest"
 
 export async function GET(req: Request){
-    const { searchParams } = new URL(req.url)
-    const city = searchParams.get('city')
-    const state = searchParams.get('state')
-    const country = searchParams.get('country')
-    const limit = searchParams.get('limit')
-    const units = searchParams.get('units') as Units
+    // Check if there are any missing necessary variables
+    const queries = ValidateRequest(req)
+    if (queries instanceof Error) return new Response(JSON.stringify(queries), { status: 400 })
 
-    if (!city) return new Response(JSON.stringify("Missing query: city"), { status: 400 })
+    const { lat, lon, units } = queries
 
     try {
-        // Get lat && lon
-        const geos = await fetchGeo({city, state: state ?? '', country: country ?? '', limit: limit ?? '5'})
-
-        // Remember that it returns a list of possible locations
-        // Perhaps make it selectable before continuing?
-        const { lat, lon } = geos[0]
-
         // Get current weather data
         const res = await fetch(`
             https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${process.env.NEXT_PUBLIC_API_KEY}
