@@ -69,93 +69,93 @@ type QuintWeeklyForecast = {
 }
 
 type ForecastObj = {
-    "dt": number,
-    "main": {
-      "temp": number,
-      "feels_like": number,
-      "temp_min": number,
-      "temp_max": number,
-      "pressure": number
-      "sea_level": number
-      "grnd_level": number
-      "humidity": number
-      "temp_kf": number
-    },
-    "weather": [
-      {
-        "id": number
-        "main": string,
-        "description": string,
-        "icon": string
-      }
-    ],
-    "clouds": {
-      "all": number
-    },
-    "wind": {
-      "speed": number
-      "deg": number
-      "gust": number
-    },
-    "visibility": number
-    "pop": number
-    "rain": {
-      "1h": number
-    },
-    "sys": {
-      "pod": string
-    },
-    "dt_txt": string
+  "dt": number,
+  "main": {
+    "temp": number,
+    "feels_like": number,
+    "temp_min": number,
+    "temp_max": number,
+    "pressure": number
+    "sea_level": number
+    "grnd_level": number
+    "humidity": number
+    "temp_kf": number
+  },
+  "weather": [
+    {
+      "id": number
+      "main": string,
+      "description": string,
+      "icon": string
+    }
+  ],
+  "clouds": {
+    "all": number
+  },
+  "wind": {
+    "speed": number
+    "deg": number
+    "gust": number
+  },
+  "visibility": number
+  "pop": number
+  "rain": {
+    "1h": number
+  },
+  "sys": {
+    "pod": string
+  },
+  "dt_txt": string
 }
 
 // In the api, it returns GeoCode[] not just a singular one
 type GeoCode = {
-    "name": string,
-    "local_names": {
-      "af": string,
-      "ar": string,
-      "ascii": string,
-      "az": string,
-      "bg": string,
-      "ca": string,
-      "da": string,
-      "de": string,
-      "el": string,
-      "en": string,
-      "eu": string,
-      "fa": string,
-      "feature_name": string,
-      "fi": string,
-      "fr": string,
-      "gl": string,
-      "he": string,
-      "hi": string,
-      "hr": string,
-      "hu": string,
-      "id": string,
-      "it": string,
-      "ja": string,
-      "la": string,
-      "lt": string,
-      "mk": string,
-      "nl": string,
-      "no": string,
-      "pl": string,
-      "pt": string,
-      "ro": string,
-      "ru": string,
-      "sk": string,
-      "sl": string,
-      "sr": string,
-      "th": string,
-      "tr": string,
-      "vi": string,
-      "zu": string
-    },
-    "lat": number,
-    "lon": number,
-    "country": string,
-    "state": string,
+  "name": string,
+  "local_names": {
+    "af": string,
+    "ar": string,
+    "ascii": string,
+    "az": string,
+    "bg": string,
+    "ca": string,
+    "da": string,
+    "de": string,
+    "el": string,
+    "en": string,
+    "eu": string,
+    "fa": string,
+    "feature_name": string,
+    "fi": string,
+    "fr": string,
+    "gl": string,
+    "he": string,
+    "hi": string,
+    "hr": string,
+    "hu": string,
+    "id": string,
+    "it": string,
+    "ja": string,
+    "la": string,
+    "lt": string,
+    "mk": string,
+    "nl": string,
+    "no": string,
+    "pl": string,
+    "pt": string,
+    "ro": string,
+    "ru": string,
+    "sk": string,
+    "sl": string,
+    "sr": string,
+    "th": string,
+    "tr": string,
+    "vi": string,
+    "zu": string
+  },
+  "lat": number,
+  "lon": number,
+  "country": string,
+  "state": string,
 }
 
 type Units = 'imperial' | 'metric' | 'standard'
@@ -175,9 +175,9 @@ interface FetchWeatherArgs {
 
 type DayMap = {
   [day: string]: {
-      forecastObjects: ForecastObj[];
-      highest: number;
-      lowest: number;
+    forecastObjects: ForecastObj[];
+    highest: number;
+    lowest: number;
   };
 }
 
@@ -188,10 +188,10 @@ interface IconProps {
   moveY?: number,
   fillColor?: string,
   rotate?: number,
-  style?: {[key: string]: any},
-  initial?: {[key: string]: any},
-  animate?: {[key: string]: any},
-  exit?: {[key: string]: any},
+  style?: { [key: string]: any },
+  initial?: { [key: string]: any },
+  animate?: { [key: string]: any },
+  exit?: { [key: string]: any },
   animateNow?: boolean | null,
 }
 
@@ -200,3 +200,17 @@ type Next5D = [string, {
   highest: number;
   lowest: number;
 }][]
+
+type IconId =
+  '01d' | '01n' | '02d' | '02n' | '03d' | '03n' |
+  '04d' | '04n' | '09d' | '09n' | '10d' | '10n' |
+  '11d' | '11n' | '13d' | '13n' | '50d' | '50n'
+
+type ConfigureIcon = {
+  moveX?: any,
+  moveY?: any,
+  size?: any,
+  initial?: { [key: string]: any },
+  animate?: { [key: string]: any },
+  exit?: { [key: string]: any },
+}

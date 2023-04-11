@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic"
 
-export function chooseIcon(iconId: IconId, config?: ConfigureIcon){
+export default function chooseIcon(iconId: IconId, config?: ConfigureIcon){
     let iconName: string;
 
     switch (iconId){
