@@ -17,7 +17,7 @@ const LocationContext = createContext({} as Location)
 const WeatherDataContext = createContext({
     current: {} as CurrentWeather,
     next24Hr: [] as ForecastObj[],
-    next5D: [] as Next5D
+    next5D: [] as DayMapArrFormat[]
 })
 
 export function SearchBar({children} : {children: ReactNode}){
@@ -43,7 +43,7 @@ export function SearchBar({children} : {children: ReactNode}){
     const [weatherData, setWeatherData] = useState({
         current: {} as CurrentWeather,
         next24Hr: [] as ForecastObj[],
-        next5D: [] as Next5D,
+        next5D: [] as DayMapArrFormat[],
     })
 
     // onClick, not onChange: this is to lowers API calls

@@ -181,6 +181,12 @@ type DayMap = {
   };
 }
 
+type DayMapArrFormat = [string, {
+  forecastObjects: ForecastObj[];
+  highest: number;
+  lowest: number;
+}]
+
 interface IconProps {
   children?: React.ReactNode,
   size?: number,
@@ -195,12 +201,6 @@ interface IconProps {
   animateNow?: boolean | null,
 }
 
-type Next5D = [string, {
-  forecastObjects: ForecastObj[];
-  highest: number;
-  lowest: number;
-}][]
-
 type IconId =
   '01d' | '01n' | '02d' | '02n' | '03d' | '03n' |
   '04d' | '04n' | '09d' | '09n' | '10d' | '10n' |
@@ -214,3 +214,4 @@ type ConfigureIcon = {
   animate?: { [key: string]: any },
   exit?: { [key: string]: any },
 }
+

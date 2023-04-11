@@ -7,18 +7,25 @@ export default function getHighsNLows(quintForecastObj: QuintWeeklyForecast) {
     const dayMap = {} as DayMap
     forecastList.map(forecast => {
         // Use the datestring as key for dayMap
-        let date = new Date(forecast.dt * 1000)
-        let day = date.toLocaleDateString()
+        let date = forecast.dt_txt.slice(0, 10)
 
         // Create the key/value pair if nonexistent
-        if (!dayMap[day]) {
-            dayMap[day] = { forecastObjects: [], highest: -Infinity, lowest: Infinity }
+        if (!dayMap[date]) {
+            dayMap[date] = { forecastObjects: [], highest: -Infinity, lowest: Infinity }
         }
         // Otherwise, append the new data
-        dayMap[day].forecastObjects.push(forecast)
+        dayMap[date].forecastObjects.push(forecast)
         // Update high/low if needed
-        if (forecast.main.temp > dayMap[day].highest) dayMap[day].highest = forecast.main.temp
-        if (forecast.main.temp < dayMap[day].lowest) dayMap[day].lowest = forecast.main.temp
+        if (forecast.main.temp > dayMap[date].highest) dayMap[date].highest = forecast.main.temp
+        if (forecast.main.temp < dayMap[date].lowest) dayMap[date].lowest = forecast.main.temp
     })
+
+    // for (let day of dayMap){
+    //     day[0] = date
+    //     day[1] = relevant weather data ( i.e forecastObjects, highest, lowest )
+    // }
+
+    // Convert it to an array to make the data more accessible
+    // "date" prop can be anything; must use indexing
     return Object.entries(dayMap)
 }
