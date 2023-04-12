@@ -1,10 +1,6 @@
-'use client'
-
-import { LazyMotion, m } from "framer-motion";
-import { useState } from "react";
-
 import Droplets from "../subAnim/Droplets";
 import { sunAndMoonSize, sandboxWidth, sandboxHeight, centerXsvg, centerYsvg, sunAndMoonRadius } from "../subAnim/variables";
+import PositionDiv from "../subAnim/PositionDiv";
 
 /*
 For "single" animated icons (e.g Droplets / Cloud): 
@@ -22,8 +18,8 @@ For "compound" animated icons (e.g Sun / PeakingSun):
 
 
 // Main Animations
-export default function Sun(props: IconProps){
-    const loadFeatures = () => import('../../../lib/animation/domAnimation').then(mod => mod.default)
+export default function Sun(props: IconProps) {
+    // const loadFeatures = () => import('../../../lib/animation/domAnimation').then(mod => mod.default)
 
     const size = props.size ?? sunAndMoonSize
     const sunRaysSize = 0.2
@@ -31,24 +27,8 @@ export default function Sun(props: IconProps){
 
     const angles = [0, 45, 90, 135, 180, 225, 270, 315]
 
-    const [animate, setAnimate] = useState(false)
-
     return (
-        <LazyMotion features={loadFeatures} strict>
-            <m.div className='positionAbsolute'
-            style={{
-                x: props.moveX,
-                y: props.moveY,
-                scale: size,
-                width: sandboxWidth,
-                height: sandboxHeight,
-               }}
-            initial={props.initial}
-            animate={props.animate}
-            exit={props.exit}
-            onPointerOver={() => setAnimate(true)}
-            onPointerOut={() => setAnimate(false)}
-            >
+        <PositionDiv {...props} size={size}>
             {/* Sun rays essentially */}
             {angles.map((angle) => (
                 <Droplets
@@ -61,25 +41,23 @@ export default function Sun(props: IconProps){
                         rotate: angle,
                         zIndex: -1,
                     }}
-                    animateNow={props.animateNow ?? animate}
                 />
             ))}
             <svg
                 width={sandboxWidth}
                 height={sandboxHeight}
-                >
-                    <circle
-                        style={{
-                            zIndex: 1,
-                        }}
-                        cx={centerXsvg}
-                        cy={centerYsvg}
-                        r={sunAndMoonRadius}
-                        fill={fillColor}
-                        />
+            >
+                <circle
+                    style={{
+                        zIndex: 1,
+                    }}
+                    cx={centerXsvg}
+                    cy={centerYsvg}
+                    r={sunAndMoonRadius}
+                    fill={fillColor}
+                />
             </svg>
-                   </m.div>
-        </LazyMotion>
+        </PositionDiv>
     )
 }
 

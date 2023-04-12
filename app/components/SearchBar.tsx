@@ -3,7 +3,7 @@ import fetchGeo from "@/lib/fetchers/fetchGeo";
 import fetchWeekly from "@/lib/fetchers/fetchWeekly";
 import get24HrForecast from "@/lib/sorters/get24HrForecast";
 import getHighsNLows from "@/lib/sorters/getHighsNLows";
-import { LazyMotion, m } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { createContext, ReactNode, useContext, useRef, useState } from "react";
 
 const LocationContext = createContext({} as LocationContext)
@@ -24,7 +24,7 @@ export function getLocationContext(){
 
 export function SearchBar({children} : {children: ReactNode}){
     // Animation features
-    const loadFeatures = () => import('@/lib/animation/domMax').then(mod => mod.default)
+    // const loadFeatures = () => import('@/lib/animation/domMax').then(mod => mod.default)
 
     // Show content if true
     const [page, setPage] = useState(false)
@@ -104,23 +104,23 @@ export function SearchBar({children} : {children: ReactNode}){
             <input className='countryInput' placeholder="country" type='text' onChange={(e) => changeLocation({country: e.target.value})}></input>
             <div className="units flex gap"> Units:
                 {/* Move line based on selection ( animation ) */}
-                <LazyMotion features={loadFeatures} strict>
+                {/* <LazyMotion features={loadFeatures} strict> */}
                     <div className="positionRelative" onClick={handleUnits} id='standard'>
                         {units === 'standard' &&
-                        <m.div className='highlight' layoutId='highlight'/>}
+                        <motion.div className='highlight' layoutId='highlight'/>}
                         °K
                     </div>
                     <div className="positionRelative" onClick={handleUnits} id='imperial'>
                         {units === 'imperial' &&
-                        <m.div className='highlight' layoutId='highlight' />}
+                        <motion.div className='highlight' layoutId='highlight' />}
                         °F
                     </div>
                     <div className="positionRelative" onClick={handleUnits} id='metric'>
                         {units === 'metric' &&
-                        <m.div className='highlight' layoutId='highlight' />}
+                        <motion.div className='highlight' layoutId='highlight' />}
                         °C
                     </div>
-                </LazyMotion>
+                {/* </LazyMotion> */}
             </div>
             <button className='SearchButton' onClick={handleQuery}>Search for location</button>
         </form>

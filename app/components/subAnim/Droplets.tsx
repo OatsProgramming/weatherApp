@@ -1,89 +1,63 @@
-import { LazyMotion, m } from "framer-motion";
+import { m } from "framer-motion";
+import PositionDiv from "./PositionDiv";
 
 const containerForSquares = {
     hidden: { opacity: 0 },
     show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 1,
-      }
+        opacity: 1,
+        transition: {
+            staggerChildren: 1,
+        }
     },
-    onDisplay: {opacity: 1},
-  }
-  
+    onDisplay: { opacity: 1 },
+}
+
 const dropping = {
-  hidden: { 
-      y: 0,
-      scale: 1, 
-  },
-  show: { 
-      y: 500,
-      scale: 0,
-      transition:{
-          duration: 5,
-          repeat: Infinity,
-      }
-  },
-  onDisplay:{
-    y: 175,
-    scale: 1,
-  }
+    hidden: {
+        y: 0,
+        scale: 1,
+    },
+    show: {
+        y: 500,
+        scale: 0,
+        transition: {
+            duration: 5,
+            repeat: Infinity,
+        }
+    },
+    onDisplay: {
+        y: 175,
+        scale: 1,
+    }
 }
 
 
-export default function Droplets(props: IconProps){
-    const loadFeatures = () => import('../../../lib/animation/domAnimation').then(mod => mod.default)
-
+export default function Droplets(props: IconProps) {
     // frequency array length === dropping.show.transition.duration 
-    const frequency = [0, 1, 2, 3, 4] 
+    const frequency = [0, 1, 2, 3, 4]
 
     // children variable is added so that precipitation can be anything desired
-    const children = props.children ?? <m.div className="droppingSquares" style={{backgroundColor: props.fillColor}} />
-    
-    let animateNow: 'show' | '';
-    let hoverNow: 'show' | '' = 'show'
-    let onDisplayLabel: 'onDisplay' | 'hidden' = 'onDisplay'
-
-    if (props.animateNow) {
-        animateNow = 'show'
-        hoverNow = ''
-        onDisplayLabel = 'hidden'
-    } 
-
+    const children = props.children ?? <m.div className="droppingSquares" style={{ backgroundColor: props.fillColor }} />
 
     return (
-        <LazyMotion features={loadFeatures} strict>
-            <m.div className='positionAbsolute'
-            style={{
-                x: props.moveX,
-                y: props.moveY,
-                scale: props.size,
-                rotate: props.rotate,
-            }}
-            initial={props.initial}
-            animate={props.animate}
-            exit={props.exit}
-            >
-                <m.ul
+        <PositionDiv {...props} isSubAnim>
+            <m.ul
                 {...props}
                 className='containerForSquares'
-                initial={onDisplayLabel}
-                animate={animateNow!}
-                whileHover={hoverNow}
+                initial='onDisplay'
+                animate='show'
                 variants={containerForSquares}
-                >
-                    {frequency.map((value) => (
-                        <m.li
-                            key={value}
-                            className='positionAbsolute flex centerItems'
-                            variants={dropping}
-                        >
-                            {children}
-                        </m.li>
-                    ))}
-                </m.ul>
-            
-            </m.div>
-        </LazyMotion>
+            >
+                {frequency.map((value) => (
+                    <m.li
+                        key={value}
+                        className='positionAbsolute flex centerItems'
+                        variants={dropping}
+                    >
+                        {children}
+                    </m.li>
+                ))}
+            </m.ul>
+        </PositionDiv>
     )
 }

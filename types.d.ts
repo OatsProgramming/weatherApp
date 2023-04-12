@@ -187,7 +187,7 @@ type DayMapArrFormat = [string, {
   lowest: number;
 }]
 
-interface IconProps {
+type IconProps = {
   children?: React.ReactNode,
   size?: number,
   moveX?: number,
@@ -198,7 +198,10 @@ interface IconProps {
   initial?: { [key: string]: any },
   animate?: { [key: string]: any },
   exit?: { [key: string]: any },
-  animateNow?: boolean | null,
+}
+
+interface PositionDivProps extends IconProps {
+  isSubAnim?: boolean
 }
 
 type IconId =
