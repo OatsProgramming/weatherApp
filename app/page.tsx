@@ -8,14 +8,14 @@ export default function Home() {
 
     return(
         <>
-        {/* <SearchBar>
+        <SearchBar>
             <section className='mainGrid'>
               <CurrentWeather />
               <Forecast />
               <Forecast column />
             </section>
-        </SearchBar> */}
-        <AllAnimate/>
+        </SearchBar>
+        {/* <AllAnimate/> */}
         </>
     )
 }

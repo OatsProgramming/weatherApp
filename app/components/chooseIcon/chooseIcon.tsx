@@ -1,67 +1,73 @@
-import dynamic from "next/dynamic"
+import Moon from "../mainAnim/Moon";
+import PeakingSun from "../mainAnim/PeakingSun";
+import PeakingMoon from "../mainAnim/PeakingMoon";
+import Cloud from "../mainAnim/Cloud";
+import Precipitation from "../mainAnim/Precipitation";
+import PeakingSunAndPrecipitation from "../mainAnim/PeakingSunAndPrecipitation";
+import PeakingMoonAndPrecipitation from "../mainAnim/PeakingMoonAndPrecipitation";
+import ThunderStorm from "../mainAnim/Thunderstorm";
+import SnowFall from "../mainAnim/Snowfall";
+import Sun from "../mainAnim/Sun";
 
-export default function chooseIcon(iconId: IconId, config?: ConfigureIcon){
-    let iconName: string;
+export default function chooseIcon(iconId: IconId, config?: ConfigureIcon): JSX.Element{
+    // let iconName: string;
+    // Lazy loading components doesnt work at all for some reason ( dynamic() and lazy() )
 
     switch (iconId){
         case '01d':{
-            iconName = 'Sun'
-            break;
+            
+            return <Sun {...config}/>
         }
         case '01n':{
-            iconName = 'Moon'
-            break;
+            
+            return <Moon {...config}/>
         }
         case '02d':{
-            iconName = 'PeakingSun'
-            break;
+            
+            return <PeakingSun {...config}/>
         }
         case '02n':{
-            iconName = 'PeakingMoon'
-            break;
+            
+            return <PeakingMoon {...config}/>
         }
         case '03d': 
         case '03n': 
         case '04d': 
         case '04n':{
-            iconName = 'Cloud'
-            break;
+            
+            return <Cloud {...config}/>
         }
         case '09d': 
         case '09n':{
-            iconName = 'Precipitation'
-            break;
+           
+            return <Precipitation {...config}/>
         }
         case '10d':{
-            iconName = 'PeakingSunAndPrecipitation'
-            break;
+            
+            return <PeakingSunAndPrecipitation {...config}/>
         }
         case '10n':{
-            iconName = 'PeakingMoonAndPrecipitation'
-            break;
+            
+            return <PeakingMoonAndPrecipitation {...config}/>
         }
         case '11d': 
         case '11n':{
-            iconName = 'Thunderstorm'
-            break;
+            
+            return <ThunderStorm {...config}/>
         }
         case '13d': 
         case '13n':{
-            iconName = 'Snowfall'
-            break;
+            
+            return <SnowFall {...config}/>
         }
         case '50d': 
         case '50n':{
-            // Create mist icon later
-            iconName = 'Sun'
-            break;
+            
+            return <Sun {...config}/>
         }
         default:{
             <div> Unknown Icon ID </div>
         }
+        return <div>Not working</div>
     } 
-    const WeatherIcon = dynamic<IconProps>(() => 
-        import(`@/app/components/mainAnim/${iconName}`)
-    )
-    return <WeatherIcon animateNow {...config}/>
 }
