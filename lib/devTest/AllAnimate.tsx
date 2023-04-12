@@ -9,41 +9,39 @@ import SnowFall from "@/app/components/mainAnim/Snowfall";
 import Sun from "@/app/components/mainAnim/Sun";
 import ThunderStorm from "@/app/components/mainAnim/Thunderstorm";
 
-
-export function AllAnimate(){
+export default function AllAnimate(){
     return (
         <div className="positionRelative">
             <div className="positionRelative iconBox">
-                <Sun animateNow/>
+                <Sun />
             </div>
             <div className="positionRelative iconBox">
-                <Cloud animateNow/>
+                <Cloud />
             </div>
             <div className="positionRelative iconBox">
-                <PeakingSun animateNow/>
+                <PeakingSun />
             </div>
             <div className="positionRelative iconBox">
-                <PeakingSunAndPrecipitation animateNow/>
+                <PeakingSunAndPrecipitation />
             </div>
             <div className="positionRelative iconBox">
-                <Precipitation animateNow/>
+                <Precipitation />
             </div>
             <div className="positionRelative iconBox">
-                <Moon animateNow/>
+                <Moon />
             </div>
             <div className="positionRelative iconBox">
-                <PeakingMoon animateNow/>
+                <PeakingMoon />
             </div>
             <div className="positionRelative iconBox">
-                <PeakingMoonAndPrecipitation animateNow/>
+                <PeakingMoonAndPrecipitation />
             </div>
             <div className="positionRelative iconBox">
-                <ThunderStorm animateNow/>
+                <ThunderStorm />
             </div>
             <div className="positionRelative iconBox">
-                <SnowFall animateNow/>
+                <SnowFall />
             </div>
         </div>
     )
 }
-
