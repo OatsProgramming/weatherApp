@@ -5,7 +5,7 @@ export default function WeatherIcon({ weatherObj, forecastType } : {
   forecastType: 'current' | 'next24Hrs' | 'next5D'; 
 }){
 
-    const iconId = weatherObj.weather[0].icon as IconId
+    const iconId = weatherObj?.weather[0].icon as IconId || '50d'
 
     let icon: JSX.Element;
     let className = 'weatherIconComponent positionRelative flex centerItems'

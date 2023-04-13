@@ -221,6 +221,7 @@ body{
   background-color: hsla(0, 0%, 100%, 0.081);
   padding: 15px;
   border-radius: 10px;
+  z-index: 100;
 }
 
 .SearchBar > input{
