@@ -1,4 +1,4 @@
-_This is a modified version of the original [weatherForecast](https://github.com/OatsProgramming/weatherForecast) to make the code base more readable and maintainable as well as data fetching more secure with Next JS. The UI design is kept the same, but when given time, will redesign. Thank you for giving a look to this project._
+_This is a modified version of the original [weatherForecast](https://github.com/OatsProgramming/weatherForecast) to make the code base more readable and maintainable as well as making data fetching more secure with Next JS. The UI design is kept the same, but when given time, will redesign. Thank you for giving a look to this project._
 
 ## To Use
 
