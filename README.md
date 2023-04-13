@@ -6,6 +6,8 @@ The link to site is here: [https://weather-app-nine-self.vercel.app/](https://we
 
 Enter a city (required), state (optional), and country(optional) to get the forecast for the queried location.
 
+You can alter the units (°K °F °C) to your prefered measurement.
+
 ## Technologies Used
 
 - Next JS
