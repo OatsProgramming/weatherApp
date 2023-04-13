@@ -7,22 +7,20 @@ import { LazyMotion, m } from "framer-motion";
 import React, { createContext, ReactNode, useContext, useRef, useState } from "react";
 
 const LocationContext = createContext({} as LocationContext)
-
 const WeatherDataContext = createContext({
     current: {} as CurrentWeather,
     next24Hr: [] as ForecastObj[],
     next5D: [] as DayMapArrFormat[]
 })
 
-export function getWeatherDataContext(){
+export function getWeatherDataContext() {
     return useContext(WeatherDataContext)
 }
-
-export function getLocationContext(){
+export function getLocationContext() {
     return useContext(LocationContext)
 }
 
-export function SearchBar({children} : {children: ReactNode}){
+export function SearchBar({ children }: { children: ReactNode }) {
     // Animation features
     const loadFeatures = () => import('@/lib/animation/domMax').then(mod => mod.default)
 
@@ -49,13 +47,13 @@ export function SearchBar({children} : {children: ReactNode}){
     })
 
     // onClick, not onChange: this is to lowers API calls
-    async function handleQuery(e: React.MouseEvent<HTMLButtonElement>){
+    async function handleQuery(e: React.MouseEvent) {
         e.preventDefault()
         const { city, state, country } = locationQuery.current
         // Get coords ( lat && lon ) to use actual weather api
         const coords = await fetchGeo({ city, state, country })
         const { lat, lon } = coords[0]
-        
+
         // For now, use the first location that pops up
         setLocationData({
             city: coords[0].name,
@@ -84,7 +82,7 @@ export function SearchBar({children} : {children: ReactNode}){
         setUnits(target.id as Units)
     }
 
-    function changeLocation(locationData: {city: string} | {state: string} | {country: string}){
+    function changeLocation(locationData: { city: string } | { state: string } | { country: string }) {
         locationQuery.current = {
             ...locationQuery.current,
             ...locationData
@@ -93,11 +91,6 @@ export function SearchBar({children} : {children: ReactNode}){
 
     return (
       <>
-        <WeatherDataContext.Provider value={weatherData}>
-            <LocationContext.Provider value={locationData}>
-              {page && children}
-            </LocationContext.Provider>
-        </WeatherDataContext.Provider>
         <form className='SearchBar grid gap gridColumn3 gridRow2'>
             <input className='cityInput' placeholder="city" type='text' onChange={(e) => changeLocation({city: e.target.value})}></input>
             <input className='stateInput' placeholder="state" type='text' onChange={(e) => changeLocation({state: e.target.value})}></input>
@@ -124,6 +117,11 @@ export function SearchBar({children} : {children: ReactNode}){
             </div>
             <button className='SearchButton' onClick={handleQuery}>Search for location</button>
         </form>
+        <WeatherDataContext.Provider value={weatherData}>
+            <LocationContext.Provider value={locationData}>
+              {page && children}
+            </LocationContext.Provider>
+        </WeatherDataContext.Provider>
       </>
     )
 }

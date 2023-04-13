@@ -11,13 +11,14 @@ export default function Next24HrComp({ weatherObj }: {
     // 15 -> "3PM"
     const time = simplifyTime(timestring)
 
-    const temp = weatherObj.main.temp
+    const temperature = weatherObj.main.temp
+    const temp = Math.round(temperature)
 
     return (
         <ul className='flex flexDirectionColumn gap centerItems'>
           <li>{time}</li>
           <li><WeatherIcon weatherObj={weatherObj} forecastType="next24Hrs"/></li>
-          <li>{temp}</li>
+          <li>{temp}°</li>
         </ul>
     )
 }

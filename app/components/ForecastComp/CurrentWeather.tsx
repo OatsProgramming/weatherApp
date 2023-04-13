@@ -6,11 +6,15 @@ export function CurrentWeather() {
   const { city, state, country } = getLocationContext()
 
   const {
-    temp,
-    // feels_like,
+    temp: temperature,
     temp_min: lowest,
     temp_max: highest,
   } = current.main
+
+  const [temp, lows, highs] = [
+    Math.round(temperature), Math.round(lowest), Math.round(highest)
+  ]
+
 
   const description = current.weather[0].description
 
@@ -20,9 +24,9 @@ export function CurrentWeather() {
         <div className="leftSideCurrent positionRelative">
           <div className="blob positionAbsolute" />
           <div>{city} {state ?? country}</div>
-          <div>{temp}</div>
+          <div>{temp}°</div>
           <div>{description}</div>
-          <div>H: {highest}  L: {lowest}</div>
+          <div>H: {highs}°  L: {lows}°</div>
         </div>
         <div className="rightSideCurrent grid gridRow3 gridColumn3 ">
           {/* Ignored since we only care about the icon */}
