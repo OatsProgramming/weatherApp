@@ -3,7 +3,7 @@ import Next24HrComp from "./Next24HrComp";
 import Next5DComp from "./Next5DContainer";
 
 // Decide if it should be a column or row design
-export default function Forecast({ column }: { column?: boolean }) {
+export default function Forecast({ column }: { column?: true }) {
   const { next24Hr, next5D } = getWeatherDataContext()
 
   if (column){
@@ -24,7 +24,6 @@ export default function Forecast({ column }: { column?: boolean }) {
           <Next24HrComp key={forecastObj.dt} weatherObj={forecastObj} />
         ))}
       </div>
-
   )
 }
 

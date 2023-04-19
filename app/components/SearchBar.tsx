@@ -4,7 +4,7 @@ import fetchWeekly from "@/lib/fetchers/fetchWeekly";
 import get24HrForecast from "@/lib/sorters/get24HrForecast";
 import getHighsNLows from "@/lib/sorters/getHighsNLows";
 import { LazyMotion, m } from "framer-motion";
-import React, { createContext, ReactNode, useContext, useRef, useState } from "react";
+import { createContext, ReactNode, useContext, useRef, useState } from "react";
 
 const LocationContext = createContext({} as LocationContext)
 const WeatherDataContext = createContext({
