@@ -9,7 +9,7 @@ export async function GET(req: Request) {
 
     try {
         const res = await fetch(`
-            https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${process.env.NEXT_PUBLIC_API_KEY}
+        https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${process.env.NEXT_PUBLIC_API_KEY}
         `)
         if (!res.ok) throw new Error("Failed to fetch data ( weekly )")
         return res

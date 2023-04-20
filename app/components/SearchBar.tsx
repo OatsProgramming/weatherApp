@@ -5,6 +5,7 @@ import get24HrForecast from "@/lib/sorters/get24HrForecast";
 import getHighsNLows from "@/lib/sorters/getHighsNLows";
 import { LazyMotion, m } from "framer-motion";
 import { createContext, ReactNode, useContext, useRef, useState } from "react";
+import styles from '@/app/components/css/searchBar.module.css'
 
 const LocationContext = createContext({} as LocationContext)
 const WeatherDataContext = createContext({
@@ -29,7 +30,8 @@ export function SearchBar({ children }: { children: ReactNode }) {
     // Alternate temp measurements
     const [units, setUnits] = useState<Units>('imperial')
 
-    // For query only
+    // For query only 
+    // ( useRef: helps with performance since it has animations )
     const locationQuery = useRef({
         city: '',
         state: '',
@@ -90,38 +92,45 @@ export function SearchBar({ children }: { children: ReactNode }) {
     }
 
     return (
-      <>
-        <form className='SearchBar grid gap gridColumn3 gridRow2'>
-            <input className='cityInput' placeholder="city" type='text' onChange={(e) => changeLocation({city: e.target.value})}></input>
-            <input className='stateInput' placeholder="state" type='text' onChange={(e) => changeLocation({state: e.target.value})}></input>
-            <input className='countryInput' placeholder="country" type='text' onChange={(e) => changeLocation({country: e.target.value})}></input>
-            <div className="units flex gap"> Units:
-                {/* Move line based on selection ( animation ) */}
-                <LazyMotion features={loadFeatures} strict>
-                    <div className="positionRelative" onClick={handleUnits} id='standard'>
-                        {units === 'standard' &&
-                        <m.div className='highlight' layoutId='highlight'/>}
-                        °K
+        <>
+            <form className={styles['container']}>
+                <div className={styles['searchBar']}>
+                    <input placeholder="city" type='text' onChange={(e) => changeLocation({ city: e.target.value })} />
+                    <input placeholder="state" type='text' onChange={(e) => changeLocation({ state: e.target.value })} />
+                    <input placeholder="country" type='text' onChange={(e) => changeLocation({ country: e.target.value })} />
+                    <div onClick={handleQuery}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
                     </div>
-                    <div className="positionRelative" onClick={handleUnits} id='imperial'>
-                        {units === 'imperial' &&
-                        <m.div className='highlight' layoutId='highlight' />}
-                        °F
-                    </div>
-                    <div className="positionRelative" onClick={handleUnits} id='metric'>
-                        {units === 'metric' &&
-                        <m.div className='highlight' layoutId='highlight' />}
-                        °C
-                    </div>
-                </LazyMotion>
-            </div>
-            <button className='SearchButton' onClick={handleQuery}>Search for location</button>
-        </form>
-        <WeatherDataContext.Provider value={weatherData}>
-            <LocationContext.Provider value={locationData}>
-              {page && children}
-            </LocationContext.Provider>
-        </WeatherDataContext.Provider>
-      </>
+                </div>
+                <div className="units flex gap"> Units:
+                    {/* Move line based on selection ( animation ) */}
+                    <LazyMotion features={loadFeatures} strict>
+                        <div className="positionRelative" onClick={handleUnits} id='standard'>
+                            {units === 'standard' &&
+                                <m.div className='highlight' layoutId='highlight' />}
+                            °K
+                        </div>
+                        <div className="positionRelative" onClick={handleUnits} id='imperial'>
+                            {units === 'imperial' &&
+                                <m.div className='highlight' layoutId='highlight' />}
+                            °F
+                        </div>
+                        <div className="positionRelative" onClick={handleUnits} id='metric'>
+                            {units === 'metric' &&
+                                <m.div className='highlight' layoutId='highlight' />}
+                            °C
+                        </div>
+                    </LazyMotion>
+                </div>
+            </form>
+
+            <WeatherDataContext.Provider value={weatherData}>
+                <LocationContext.Provider value={locationData}>
+                        {page && children}
+                </LocationContext.Provider>
+            </WeatherDataContext.Provider>
+        </>
     )
 }

@@ -1,0 +1,28 @@
+.container {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: rgba(185,185,185,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.searchBar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    max-width: 768px;
+}
+
+.searchBar > input {
+    width: 25%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.searchBar > div {
+    width: 1.3em;
+    cursor: pointer;
+}
