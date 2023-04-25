@@ -3,5 +3,5 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "workbench.preferredDarkColorTheme": "GitHub Dark Default",
   "workbench.preferredLightColorTheme": "Default Dark+",
-  "workbench.colorTheme": "GitHub Dark Default"
+  "workbench.colorTheme": "Default Dark+ Experimental"
 }
